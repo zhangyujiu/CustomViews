@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomSeekBar">
+        <attr name="progressTextPaddingBottom" format="float" />
+        <attr name="progressTextSize" format="dimension" />
+        <attr name="progressTextColor" format="color|reference" />
+    </declare-styleable>
+
+</resources>
