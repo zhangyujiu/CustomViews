@@ -5,5 +5,16 @@
         <attr name="progressTextSize" format="dimension" />
         <attr name="progressTextColor" format="color|reference" />
     </declare-styleable>
-
+    <declare-styleable name="MarqueeViewStyle">
+        <attr name="mvInterval" format="integer|reference" />
+        <attr name="mvAnimDuration" format="integer|reference" />
+        <attr name="mvTextSize" format="dimension|reference" />
+        <attr name="mvTextColor" format="color|reference" />
+        <attr name="mvSingleLine" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="ExpandTextView">
+        <attr name="endText" format="string" />
+        <attr name="expandText" format="string" />
+        <attr name="useGradientAlphaEndText" format="boolean" />
+    </declare-styleable>
 </resources>

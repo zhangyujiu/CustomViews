@@ -1,4 +1,4 @@
-package com.jk.customviews
+package com.jk.custom.views
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,6 +9,8 @@ import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.View
 import androidx.appcompat.widget.AppCompatSeekBar
+import com.jk.custom.utils.DisplayUtils
+import com.jk.custom.R
 
 /**
  * 自定义滑块顶部带进度显示的SeekBar
@@ -32,13 +34,18 @@ class CustomSeekBar : AppCompatSeekBar {
     }
 
     private fun initView(attrs: AttributeSet) {
-        val ta = context.obtainStyledAttributes(attrs, R.styleable.CustomSeekBar)
+        val ta = context.obtainStyledAttributes(attrs,
+            R.styleable.CustomSeekBar
+        )
         mProgressTextColor =
             ta.getColor(R.styleable.CustomSeekBar_progressTextColor, mProgressTextColor)
         if (ta.hasValue(R.styleable.CustomSeekBar_progressTextSize)) {
             mProgressTextSize =
                 ta.getDimension(R.styleable.CustomSeekBar_progressTextSize, mProgressTextSize)
-            mProgressTextSize = DisplayUtils.px2sp(context, mProgressTextSize).toFloat()
+            mProgressTextSize = DisplayUtils.px2sp(
+                context,
+                mProgressTextSize
+            ).toFloat()
         }
         if (ta.hasValue(R.styleable.CustomSeekBar_progressTextPaddingBottom)) {
             mProgressTextPaddingBottom = ta.getFloat(
@@ -46,7 +53,10 @@ class CustomSeekBar : AppCompatSeekBar {
                 mProgressTextPaddingBottom
             )
             mProgressTextPaddingBottom =
-                DisplayUtils.dip2px(context, mProgressTextPaddingBottom).toFloat()
+                DisplayUtils.dip2px(
+                    context,
+                    mProgressTextPaddingBottom
+                ).toFloat()
         }
         ta.recycle()
     }
@@ -71,7 +81,10 @@ class CustomSeekBar : AppCompatSeekBar {
 
         val paint = Paint()
         paint.isAntiAlias = true
-        paint.textSize = DisplayUtils.sp2px(context, mProgressTextSize).toFloat()
+        paint.textSize = DisplayUtils.sp2px(
+            context,
+            mProgressTextSize
+        ).toFloat()
         paint.color = mProgressTextColor
         val textString = "${progress * 100 / max}%"
         val pair = measureText(textString)
@@ -88,7 +101,10 @@ class CustomSeekBar : AppCompatSeekBar {
 
     private fun measureText(str: String): Pair<Int, Int> {
         val paint = Paint()
-        paint.textSize = DisplayUtils.sp2px(context, mProgressTextSize).toFloat()
+        paint.textSize = DisplayUtils.sp2px(
+            context,
+            mProgressTextSize
+        ).toFloat()
         val rect = Rect()
         paint.getTextBounds(str, 0, str.length, rect)
         val w: Int = rect.width()

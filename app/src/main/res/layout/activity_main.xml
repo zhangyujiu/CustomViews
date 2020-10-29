@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.jk.customviews.CustomSeekBar
+    <com.jk.custom.views.CustomSeekBar
         android:id="@+id/alphaSeek"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

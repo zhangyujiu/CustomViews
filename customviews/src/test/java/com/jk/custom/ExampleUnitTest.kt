@@ -1,4 +1,4 @@
-package com.jk.customviews
+package com.jk.custom
 
 import org.junit.Test
 
