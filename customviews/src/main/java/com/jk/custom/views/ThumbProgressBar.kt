@@ -22,13 +22,15 @@ class ThumbProgressBar : ProgressBar {
     private var mThumbDrawableHeight = 0
 
     //进度条高度
-    private var mProgressBarHeight = DisplayUtils.dip2px(context, 12f)
+    private var mProgressBarHeight = DisplayUtils.dip2px(context,12f)
 
     //Thumb偏移量
-    private val mDefaultThumbOffset = DisplayUtils.dip2px(context, 13f)
+    private val mDefaultThumbOffset = DisplayUtils.dip2px(context,13f)
 
     //ProgressBar左右偏移量
-    private val mProgressBarPadding = DisplayUtils.dip2px(context, 16f)
+    private val mProgressBarPadding = DisplayUtils.dip2px(context,16f)
+
+    private var mPaint: Paint
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
@@ -42,12 +44,12 @@ class ThumbProgressBar : ProgressBar {
         mThumbDrawable = ContextCompat.getDrawable(context, R.drawable.icon_package_check_rocket)
         mThumbDrawableWidth = mThumbDrawable?.intrinsicWidth ?: 0
         mThumbDrawableHeight = mThumbDrawable?.intrinsicHeight ?: 0
+        mPaint = Paint()
+        mPaint.isAntiAlias = true
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val thumbHeight = if (mThumbDrawable == null) 0 else mThumbDrawableHeight
-        val progressBarHeight = View.getDefaultSize(0, heightMeasureSpec)
-        val dh = if (thumbHeight > progressBarHeight) thumbHeight else progressBarHeight
+        val dh = if (mThumbDrawableHeight > mProgressBarHeight) mThumbDrawableHeight else mProgressBarHeight
         setMeasuredDimension(
             View.getDefaultSize(0, widthMeasureSpec),
             dh
@@ -60,7 +62,6 @@ class ThumbProgressBar : ProgressBar {
         )
     }
 
-    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         val percent = progress.toFloat() / max
@@ -74,11 +75,9 @@ class ThumbProgressBar : ProgressBar {
         if (offsetX > measuredWidth - mThumbDrawableWidth) {
             offsetX = (measuredWidth - mThumbDrawableWidth).toFloat()
         }
-        val paint = Paint()
-        paint.isAntiAlias = true
 
         val bitmapDrawable = mThumbDrawable as BitmapDrawable
         val bitmap = bitmapDrawable.bitmap
-        canvas.drawBitmap(bitmap, offsetX, 0f, paint)
+        canvas.drawBitmap(bitmap, offsetX, 0f, mPaint)
     }
 }
