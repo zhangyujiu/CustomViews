@@ -6,10 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.jk.custom.views.ThumbProgressBar
+        android:id="@+id/progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:max="100"
+        android:progress="50"
+        android:progressDrawable="@drawable/package_check_dialog_item_progress" />
+
     <com.jk.custom.views.CustomSeekBar
         android:id="@+id/alphaSeek"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:max="100"
         android:maxHeight="2dp"
         android:progress="50"
@@ -17,9 +32,6 @@
         android:thumb="@drawable/seekbar_thumb"
         app:progressTextColor="#06CCF4"
         app:progressTextPaddingBottom="3"
-        app:progressTextSize="10sp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_centerInParent="true"/>
+        app:progressTextSize="10sp" />
 
 </RelativeLayout>
